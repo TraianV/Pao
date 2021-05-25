@@ -1,28 +1,27 @@
 package ro.unibuc.programare_cabinet_medical;
 
 
+import ro.unibuc.programare_cabinet_medical.et3.*;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        int i;
 
-        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
-        ServiciuProgramari programari = ServiciuProgramari.getInstance();
-        ServiciuMedic doctors = ServiciuMedic.getInstance();
-        ServiciuClient clienti = ServiciuClient.getInstance();
-
-        Citire f = Citire.getInstance();
-        Scriere g = Scriere.getInstance();
-
-        audit a = audit.getInstance();
-
-        f.citMedic();
-        f.citClienti();
-        f.citProgramari();
+        Scanner in = new Scanner(System.in);
+        DAOClienti daoClienti = DAOClienti.getDaoClienti();
+        daoClienti.read();
+        DAOMedici daoMedici = DAOMedici.getDaoMedici();
+        daoMedici.read();
+        DAOProgramare daoProgramare = DAOProgramare.getDaoProgramare();
+        daoProgramare.read();
         Interogari interogations = new Interogari();
+        System.out.println("Scrieti comanda");
+        i=in.nextInt();
 
-        /*while (i>0)
+        while (i>0)
         {
             if(i == 1){
             interogations.addMedic(in);
@@ -68,11 +67,9 @@ public class Main {
             {
                 interogations.afisProgram();
             }
-            i=in.nextInt();*/
-        g.afisMedic();
-        g.afisClient();
-        g.afisProgramari();
+            System.out.println("Scrieti alta comanda");
+            i=in.nextInt();
 
         }
     }
-
+}
